@@ -57,12 +57,12 @@ class MainActivity : AppCompatActivity() {
     private fun getUser() {
         var usersApi = retrofitInstance.create(UsersApi::class.java)
 
-        var nextCall = usersApi.getUser()
+        var nextCall = usersApi.getUser("4")
         nextCall.enqueue(object: Callback<UserData> {
             override fun onResponse(call: Call<UserData>?, response: Response<UserData>?) {
                 if (response!!.isSuccessful) {
                     val user = response.body()
-                    System.out.println("USER'S ${user!!.data.id} info = ${user.data}")
+                    System.out.println("USER with id=${user!!.data.id}'s info = ${user.data}")
                 } else {
                     System.out.println(response.errorBody())
                 }
